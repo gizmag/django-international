@@ -64,20 +64,37 @@ currencies'.
 from __future__ import unicode_literals
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext as _
 
+import settings
 from models import currencies, countries, Country
+
+def get_arg(kwarg, arg_name, default):
+    arg_val = default
+    if arg_name in kwarg:
+        arg_val = kwarg[arg_name]
+        del kwarg[arg_name]
+    return arg_val, kwarg
+
 
 
 class CountryForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(CountryForm, self).__init__(*args, **kwargs)
+    def __init__(self, *arg, **kwarg):
+        use_static, kwarg = get_arg(kwarg, 'use_static',
+                                    settings.COUNTRY_FORM_USE_STATIC)
+        include_empty, kwarg = get_arg(kwarg, 'include_empty',
+                                       settings.COUNTRY_FORM_INCLUDE_EMPTY)
+        empty_value, kwarg = get_arg(kwarg, 'empty_value',
+                                     settings.COUNTRY_FORM_EMPTY_VALUE)
+        empty_label, kwarg = get_arg(kwarg, 'empty_label',
+                                     settings.COUNTRY_FORM_EMPTY_LABEL)
+
+        super(CountryForm, self).__init__(*arg, **kwarg)
 
         choices = []
 
         # Use static data or not
-        if settings.COUNTRY_FORM_USE_STATIC:
+        if use_static:
             choices = list(countries)
         else:
             # Create choices for country field
@@ -85,38 +102,39 @@ class CountryForm(forms.Form):
                 choices.append((country.code, country.get_code_display()))
 
         # Include empty or not
-        if settings.COUNTRY_FORM_INCLUDE_EMPTY:
-            choices.insert(0, (settings.COUNTRY_FORM_EMPTY_VALUE,
-                               settings.COUNTRY_FORM_EMPTY_LABEL))
+        if include_empty:
+            choices.insert(0, (empty_value, empty_label))
 
         # Assign values
         self.fields['country'].choices = choices
-        self.fields['country'].label = settings.COUNTRY_FORM_LABEL
-        self.fields['country'].initial = kwargs.get('initial', {}).get(
-            'country', settings.COUNTRY_FORM_INITIAL_VALUE)
 
     country = forms.ChoiceField(required=False,
-                                choices=())
+                                choices=(),
+                                label=settings.COUNTRY_FORM_LABEL,
+                                initial=settings.COUNTRY_FORM_INITIAL_VALUE)
 
 
 class CurrencyForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(CurrencyForm, self).__init__(*args, **kwargs)
+    def __init__(self, *arg, **kwarg):
+        include_empty, kwarg = get_arg(kwarg, 'include_empty',
+                                       settings.CURRENCY_FORM_INCLUDE_EMPTY)
+        empty_value, kwarg = get_arg(kwarg, 'empty_value',
+                                     settings.CURRENCY_FORM_EMPTY_VALUE)
+        empty_label, kwarg = get_arg(kwarg, 'empty_label',
+                                     settings.CURRENCY_FORM_EMPTY_LABEL)
+
+        super(CurrencyForm, self).__init__(*arg, **kwarg)
 
         choices = list(currencies)
 
-        if settings.CURRENCY_FORM_INCLUDE_EMPTY:
-            choices.insert(0, (settings.CURRENCY_FORM_EMPTY_VALUE,
-                               settings.CURRENCY_FORM_EMPTY_LABEL))
+        if include_empty:
+            choices.insert(0, (empty_value, empty_label))
 
-        self.fields['currency'].label = settings.CURRENCY_FORM_LABEL
         self.fields['currency'].choices = choices
-        self.fields['currency'].initial = kwargs.get(
-            'initial', {}
-        ).get('currency', settings.CURRENCY_FORM_INITIAL_VALUE)
 
-    currency = forms.ChoiceField(required=False,
-                                 choices=())
+    currency = forms.ChoiceField(required=False, choices=currencies,
+                                 label=settings.CURRENCY_FORM_LABEL,
+                                 initial=settings.CURRENCY_FORM_INITIAL_VALUE)
 
 
 class CountryCurrencyForm(CountryForm, CurrencyForm, forms.Form):
