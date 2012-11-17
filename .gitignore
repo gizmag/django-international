@@ -1,0 +1,9 @@
+*.swp
+*.swo
+*.pyo
+*.pyc
+*.db
+lib
+share
+include
+bin
