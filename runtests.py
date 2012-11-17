@@ -26,14 +26,12 @@ from django.test.simple import DjangoTestSuiteRunner
 
 def runtests(*test_args, **kwargs):
     if 'south' in settings.INSTALLED_APPS:
-        from south.management.commands import
-        patch_for_test_db_setup
+        from south.management.commands import patch_for_test_db_setup
         patch_for_test_db_setup()
 
     if not test_args:
         test_args = ['tests']
-    parent =
-    dirname(abspath(__file__))
+    parent = dirname(abspath(__file__))
     sys.path.insert(0, parent)
     test_runner = DjangoTestSuiteRunner(verbosity=kwargs.get('verbosity', 1),
                                         interactive=kwargs.get('interactive',
