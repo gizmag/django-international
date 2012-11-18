@@ -7,6 +7,8 @@ country- and currency-related information in your Django_ project. The data
 used in this app comes from Wikipedia_ and XE.com_, and will be updated from
 time to time when sources become updated.
 
+.. contents::
+
 international.models.countries_raw
 ==================================
 
