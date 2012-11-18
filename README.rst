@@ -12,7 +12,7 @@ time to time when sources become updated.
 international.models.countries_raw
 ==================================
 
-This is a tuple of tuples in the following format:
+This is a tuple of tuples in the following format::
 
     countries_raw = (
         (CO, CC, CNT, NUM, FN),
@@ -47,7 +47,7 @@ international.models.currencies
 
 This is atuple of tuples compatible with ``choices`` argument passed to
 Django's model/form fields. The values are ISO 4217 3-letter currency codes,
-and display values are the same codes with full currency names. For example:
+and display values are the same codes with full currency names. For example::
 
     ('USD', 'USD - United States Dollar')
 
@@ -70,7 +70,7 @@ countries found on Wikipedia_. There is currently no way of restricting the
 choices with configuration settings.
 
 The full names of countries are translatable strings, and can be displayed by
-using the standard Django API for display names:
+using the standard Django API for display names::
 
     >>> c = Country(code='AR', continent='SA')
     >>> c.get_code_display()
@@ -82,16 +82,16 @@ Country.continent
 This field contains two-letter codes for continents as per Wikipedia_. These
 are restricted to:
 
- + *AF*  --  Africa
- + *AS*  --  Asia
- + *EU*  --  Europe
- + *NA*  --  North America
- + *SA*  --  South America
- + *OC*  --  Oceania
- + *AN*  --  Antarctica
++ *AF*  --  Africa
++ *AS*  --  Asia
++ *EU*  --  Europe
++ *NA*  --  North America
++ *SA*  --  South America
++ *OC*  --  Oceania
++ *AN*  --  Antarctica
 
 The full names are translatable, and can be obtained using Django's standard
-display name API:
+display name API::
 
     >>> c = Country(code='AR', continent='SA')
     >>> c.get_continent_display()
