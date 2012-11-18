@@ -7,3 +7,5 @@ lib
 share
 include
 bin
+dist
+migrations
