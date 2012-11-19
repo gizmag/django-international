@@ -1,3 +1,11 @@
+"""
+This file is part of django-international.
+Copyright (c) 2012 Monwara LLC.
+All rights reserved.
+
+Licensed under BSD license. See LICENSE file for more details.
+"""
+
 from __future__ import unicode_literals
 
 from django.utils.translation import ugettext as _

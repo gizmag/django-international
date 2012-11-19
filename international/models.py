@@ -1,4 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+This file is part of django-international.
+Copyright (c) 2012 Monwara LLC.
+All rights reserved.
+
+Licensed under BSD license. See LICENSE file for more details.
+"""
+
+from __future__ import unicode_literals
+
+from django.db import models
+from django.utils.translation import ugettext as _
+
 
 """Countries and currencies
 
@@ -10,12 +23,6 @@ since we might want to edit the country list at some point, depending on our
 needs.
 
 """
-
-
-from __future__ import unicode_literals
-
-from django.db import models
-from django.utils.translation import ugettext as _
 
 countries_raw = (
     ("AS", "AF", "AFG", 4, _("Afghanistan, Islamic Republic of")),
