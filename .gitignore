@@ -8,5 +8,6 @@ share
 include
 bin
 dist
+build
 migrations
 MANIFEST
