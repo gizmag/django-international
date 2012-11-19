@@ -1,4 +1,7 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except:
+    from distutils.core import setup
 
 setup(
     name='django-international',
@@ -12,6 +15,8 @@ setup(
     download_url='https://bitbucket.org/monwara/django-international/downloads',
     license='BSD',
     classifiers = [
+        'Development Status :: 2 - Pre-Alpha',
+        'Framework :: Django',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
