@@ -4,7 +4,7 @@ setup(
     name='django-international',
     description='Country and currency data for Django projects',
     long_description='Models, forms, and data for use with projects that '
-    'require country- and currency-related functionality.'
+    'require country- and currency-related functionality.',
     version='0.0.1',
     packages=['international'],
     author='Monwara LLC',
