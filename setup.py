@@ -1,7 +1,4 @@
-try:
-    from setuptools import setup
-except:
-    from distutils.core import setup
+from distutils.core import setup
 
 setup(
     name='django-international',
