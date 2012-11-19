@@ -1,0 +1,5 @@
+2012-11-19 release 0.0.1
+========================
+
+Cleaned up and added proper distutils support, as well as brief documentation
+in the README.mkd.

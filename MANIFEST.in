@@ -1,0 +1,4 @@
+include README.mkd
+include international/fixtures/*.json
+include LICENSE
+include NEWS
