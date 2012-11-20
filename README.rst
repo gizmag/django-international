@@ -97,8 +97,17 @@ display name API::
     >>> c.get_continent_display()
     u'South America'
 
-international.forms.CountryForm(*arg, use_static=False, include_empty=False, empty_value='', empty_label='All countries', **kwarg)
-==================================================================================================================================
+international.forms.CountryForm
+===============================
+
+The contstructor is invoked usual form arguments and some addional arguments::
+
+    CountryForm(*arg, 
+                use_static=False, 
+                include_empty=False, 
+                empty_value='', 
+                empty_label='All countries', 
+                **kwarg)
 
 This is a simple form with a single ``ChoiceField`` field called ``country``.
 It is marked as optional, has a translatable label that reads 'country', and
@@ -112,64 +121,61 @@ arguments always take precedence over settings.
 Following sections describe available configuration settings and matching
 constructor arguments.
 
-COUNTRY_FORM_USE_STATIC or use_static
--------------------------------------
+``COUNTRY_FORM_USE_STATIC`` or ``use_static``
+    These options control whether to use the ``countries`` tuple or use
+    existing countries from the ``Country`` model as choices for the field. If
+    the model objects are used, they are read from the database each time the
+    form is initialized. There is currently no caching involved.
 
-These options control whether to use the ``countries`` tuple or use existing
-countries from the ``Country`` model as choices for the field. If the model
-objects are used, they are read from the database each time the form is
-initialized. There is currently no caching involved.
+``COUNTRY_FORM_INCLUDE_EMPTY`` or ``include_empty``
+    Whether to include an 'empty' item in the choices. This can be treated as a
+    ``None`` value in the views, depending on your needs. If set to ``True``, a
+    single two-tuple will be prepended to the choices tuple that uses empty
+    value specified by ``COUNTRY_FORM_EMPTY_VALUE`` setting or the
+    ``empty_value`` constructor argument, and label matching the
+    ``COUNTRY_FORM_EMPTY_LABEL`` setting or ``empty_label`` constructor
+    argument.
 
-COUNTRY_FORM_INCLUDE_EMPTY or include_empty
--------------------------------------------
+``COUNTRY_FORM_EMPTY_VALUE`` or ``empty_value``
+    The value to use as empty. Defaults to empty string.
 
-Whether to include an 'empty' item in the choices. This can be treated as a
-``None`` value in the views, depending on your needs. If set to ``True``, a
-single two-tuple will be prepended to the choices tuple that uses empty value
-specified by ``COUNTRY_FORM_EMPTY_VALUE`` setting or the ``empty_value`` 
-constructor argument, and label matching the ``COUNTRY_FORM_EMPTY_LABEL`` 
-setting or ``empty_label`` constructor argument.
+``COUNTRY_FORM_EMPTY_LABEL`` or ``empty_label``
+    Value to use as display value for the empty item. Default to a translatable
+    string 'All countries'.
 
-COUNTRY_FORM_EMPTY_VALUE or empty_value
----------------------------------------
+international.forms.CurrencyForm
+================================
 
-The value to use as empty. Defaults to empty string.
+Just like ``CountryForm`` (q.v., international.forms.CountryForm_), 
+``CurrencyForm`` can be invoked with additonal arguments::
 
-COUNTRY_FORM_EMPTY_LABEL or empty_label
----------------------------------------
+    CurrencyForm(*arg, 
+                 include_empty=False, 
+                 empty_value='', 
+                 empty_label='All currencies', 
+                 **kwarg)
 
-Value to use as display value for the empty item. Default to a translatable
-string 'All countries'.
-
-international.forms.CurrencyForm(*arg, include_empty=False, empty_value='', empty_label='All currencies', **kwarg)
-==================================================================================================================
 
 Simple form with a simple ``ChoiceField`` field called ``currency``. It uses
 the ``currencies`` tuple as choices argument.
 
 This form has similar configuration parameters as the ``CountryForm`` form.
 
-CURRENCY_FORM_INCLUDE_EMPTY or include_empty
---------------------------------------------
+``CURRENCY_FORM_INCLUDE_EMPTY`` or ``include_empty``
+    Whether to include an empty item in the choices. The value and label of the
+    empty item are controlled via the ``CURRENCY_FORM_EMPTY_VALUE`` and
+    ``CURRENCY_FORM_EMPTY_LABEL`` settings, or the ``empty_value`` and
+    ``empty_label`` constructor arguments.
 
-Whether to include an empty item in the choices. The value and label of the
-empty item are controlled via the ``CURRENCY_FORM_EMPTY_VALUE`` and
-``CURRENCY_FORM_EMPTY_LABEL`` settings, or the ``empty_value`` and
-``empty_label`` constructor arguments.
+``CURRENCY_FORM_EMPTY_VALUE`` or ``empty_value``
+    Controls the empty item's value. Defaults to ''.
 
-CURRENCY_FORM_EMPTY_VALUE or empty_value
-----------------------------------------
+``CURRENCY_FORM_EMPTY_LABEL`` or ``empty_label``
+    Controls the label used for the empty item. Defaults to a translatable string
+    'All currencies'.
 
-Controls the empty item's value. Defaults to ''.
-
-CURRENCY_FORM_EMPTY_LABEL or empty_label
-----------------------------------------
-
-Controls the label used for the empty item. Defaults to a translatable string
-'All currencies'.
-
-international.forms.CountryCurrencyForm(*args, **kwargs)
-========================================================
+international.forms.CountryCurrencyForm
+=======================================
 
 This is an experimental feature that combines both the ``CountryForm`` and
 ``CurrencyForm`` into a single form. This form is governed by both sets of
@@ -177,6 +183,9 @@ settings and constructor arguments that apply to either of the simple forms.
 
 This feature hsan't been tested thoroughly (especially the constructor
 arguments), but it is known to work as expected with configuration settings.
+
+Also see international.forms.CountryForm_ and international.forms.CurrencyForm_
+for more information.
 
 Fixtures
 ========
@@ -193,9 +202,9 @@ of the model.
 Reporting bugs
 ==============
 
-Bugs can be reported to Bitbucket_.
+Bugs can be reported to Bitbucket `issue tracker`_.
 
 .. _Django: http://www.djangoproject.com/
 .. _Wikipedia: http://en.wikipedia.org/wiki/List_of_countries_by_continent_%28data_file%29
 .. _XE.com: http://www.xe.com/iso4217.php
-.. _Bitbucket: https://bitbucket.org/monwara/django-international/issues
+.. _issue tracker: https://bitbucket.org/monwara/django-international/issues
