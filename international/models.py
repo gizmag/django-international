@@ -477,4 +477,10 @@ class Country(models.Model):
     continent = models.CharField(_('continent'), max_length=2,
                                  choices=continents)
 
+    def __unicode__(self):
+        return self.get_code_display()
+
+    class Meta:
+        verbose_name = _('country')
+        verbose_name_plural = _('countries')
 
