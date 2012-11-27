@@ -485,9 +485,11 @@ if babel:
             languages_english.append((l_id, _(l.english_name)))
             if l.display_name:
                 languages_native.append((l_id, l.display_name))
-                languages.append(
-                    (l_id, "%s (%s)" % (l.display_name, l.english_name))
-                )
+                if l.display_name == l.english_name:
+                    label = '%s' % l.english_name
+                else:
+                    label = '%s (%s)' % (l.display_name, l.english_name)
+                languages.append((l_id, label))
 
 
 class Country(models.Model):

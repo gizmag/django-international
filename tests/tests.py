@@ -71,6 +71,9 @@ class LangTest(TestCase):
     def test_language_list(self):
         self.assertIn(('ja', '日本語 (Japanese)'), languages)
 
+    def test_english_name_has_no_parens(self):
+        self.assertIn(('en_US', 'U.S. English'), languages)
+
     def test_language_native_list(self):
         self.assertIn(('ja', '日本語'), languages_native)
 
