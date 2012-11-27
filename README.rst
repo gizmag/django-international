@@ -7,6 +7,8 @@ country- and currency-related information in your Django_ project. The data
 used in this app comes from Wikipedia_ and XE.com_, and will be updated from
 time to time when sources become updated.
 
+Language name data is acquired from babel_ if babel is installed.
+
 .. contents::
 
 international.models.countries_raw
@@ -53,6 +55,34 @@ and display values are the same codes with full currency names. For example::
 
 This tuple is used as ``choices`` argument for the ``ChoicesField`` in the
 currency form.
+
+international.models.languages
+==============================
+
+This list provides a list of choices-compatible tuples that pair locale
+identifiers (e.g., ``'en_US'``) with both native and English language names of
+the language. For languages whose native names are in English, no translation
+is used. E.g.::
+
+    jp          日本語 (Japanese)
+    en_US       U.S. English
+
+This list is empty if babel is not installed, but having babel installed is
+*not* a requirement if you do not need language lists.
+
+internationa.models.languages_native
+====================================
+
+Same as ``international.models.langauges`` but using only native version of the
+name as label. As with other language lists, this list is only populated if
+babel is installed.
+
+international.models.languages_english
+======================================
+
+Same as ``international.models.langauges`` but using only English version of
+the name as label. AS with other language lists, this is only populated if
+babel is installed.
 
 international.models.Country
 ============================
@@ -207,4 +237,5 @@ Bugs can be reported to Bitbucket `issue tracker`_.
 .. _Django: http://www.djangoproject.com/
 .. _Wikipedia: http://en.wikipedia.org/wiki/List_of_countries_by_continent_%28data_file%29
 .. _XE.com: http://www.xe.com/iso4217.php
+.. _babel: http://babel.edgewall.org/
 .. _issue tracker: https://bitbucket.org/monwara/django-international/issues
