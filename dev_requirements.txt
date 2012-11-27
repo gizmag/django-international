@@ -1,3 +1,4 @@
 https://www.djangoproject.com/download/1.5a1/tarball/#egg=django
 mock==1.0.0
 coverage==3.5.3
+babel>=0.9

@@ -1,9 +1,12 @@
+# --*-- coding: utf8 --*--
+
 from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from international.models import Country
+from international.models import *
 from international.forms import *
+
 
 class CountryTestCase(TestCase):
     def setUp(self):
@@ -18,6 +21,7 @@ class CountryTestCase(TestCase):
 
     def tearDown(self):
         Country.objects.all().delete()
+
 
 class CountryFormTestCase(TestCase):
     def setUp(self):
@@ -62,3 +66,13 @@ class CurrencyFormTestCase(TestCase):
                             empty_label='Any currency')
         self.assertIn(('*', 'Any currency'), form.fields['currency'].choices)
 
+
+class LangTest(TestCase):
+    def test_language_list(self):
+        self.assertIn(('ja', '日本語 (Japanese)'), languages)
+
+    def test_language_native_list(self):
+        self.assertIn(('ja', '日本語'), languages_native)
+
+    def test_language_english_list(self):
+        self.assertIn(('ja', 'Japanese'), languages_english)
