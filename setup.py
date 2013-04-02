@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='django-international',
@@ -18,6 +18,7 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
     ],
+    include_package_data=True
 )
 
 
