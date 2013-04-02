@@ -4,7 +4,7 @@ setup(
     name='django-international',
     description='Country and currency data for Django projects',
     long_description=open('README.rst').read(),
-    version='0.0.3',
+    version='0.0.4',
     packages=['international'],
     author='Monwara LLC',
     author_email='branko@monwara.com',
