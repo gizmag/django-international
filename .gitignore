@@ -1,13 +1,8 @@
-*.swp
-*.swo
-*.pyo
-*.pyc
+*.sw[op]
+*.py[co]
 *.db
-lib
-share
-include
-bin
 dist
 build
 migrations
 MANIFEST
+django_international.egg-info
