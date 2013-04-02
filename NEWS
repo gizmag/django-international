@@ -1,3 +1,8 @@
+2013-04-03 release 0.0.6
+========================
+
++ Reverted to distutils and fixed fixture instll issue
+
 2013-04-03 release 0.0.5
 ========================
 
