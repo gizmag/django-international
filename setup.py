@@ -4,7 +4,7 @@ setup(
     name='django-international',
     description='Country and currency data for Django projects',
     long_description=open('README.rst').read(),
-    version='0.0.5',
+    version='0.0.6',
     packages=['international'],
     package_data={
         '': ['fixtures/*.json'],
