@@ -229,6 +229,11 @@ them hard-coded. Initial data fixture would overwrite the data each time
 ``syncdb`` command is used, so it would effectively invalidate the very purpose
 of the model.
 
+Contributors
+============
+
++ Theo Chatzimichos (https://bitbucket.org/tampakrap)
+
 Reporting bugs
 ==============
 
