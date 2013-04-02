@@ -1,3 +1,8 @@
+2013-04-02 release 0.0.4
+========================
+
++ Fixed #2: setup not including fixtures (Theo Chatzimichos)
+
 2012-11-27 release 0.0.3
 ========================
 
