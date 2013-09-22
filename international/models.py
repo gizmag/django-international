@@ -287,7 +287,6 @@ countries_raw = (
     ("AS", "XE", None, None, _("Iraq-Saudi Arabia Neutral Zone")),
     ("AS", "XD", None, None, _("United Nations Neutral Zone")),
     ("AS", "XS", None, None, _("Spratly Islands")),
-    ("AS", "XS", None, None, _("Spratly Islands")),
 )
 
 countries = [
