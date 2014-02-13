@@ -476,20 +476,19 @@ languages_native = []
 languages_english = []
 
 if babel:
-    if hasattr(babel.localedata, 'list'):
-        locales = babel.localedata.list()
-        locales.sort()
-        for l_id in locales:
-            l = babel.Locale(l_id)
-            if l.english_name:
-                languages_english.append((l_id, _(l.english_name)))
-                if l.display_name:
-                    languages_native.append((l_id, l.display_name))
-                    if l.display_name == l.english_name:
-                        label = '%s' % l.english_name
-                    else:
-                        label = '%s (%s)' % (l.display_name, l.english_name)
-                    languages.append((l_id, label))
+    locales = babel.localedata.list()
+    locales.sort()
+    for l_id in locales:
+        l = babel.Locale(l_id)
+        if l.english_name:
+            languages_english.append((l_id, _(l.english_name)))
+            if l.display_name:
+                languages_native.append((l_id, l.display_name))
+                if l.display_name == l.english_name:
+                    label = '%s' % l.english_name
+                else:
+                    label = '%s (%s)' % (l.display_name, l.english_name)
+                languages.append((l_id, label))
 
 
 class Country(models.Model):
@@ -511,3 +510,4 @@ class Country(models.Model):
     class Meta:
         verbose_name = _('country')
         verbose_name_plural = _('countries')
+
